@@ -70,6 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
               scrollGesturesEnabled: true,
               zoomGesturesEnabled: true,
               tiltGesturesEnabled: true,
+              mapType: _defaultMapType,
             ),
             Container(
               margin: EdgeInsets.only(top: 80, right: 10),
