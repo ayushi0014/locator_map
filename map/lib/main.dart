@@ -29,15 +29,7 @@ class _MyHomePageState extends State<MyHomePage> {
   GoogleMapController _controller;
   Location _location = Location();
   
-  MapType _defaultMapType = MapType.normal;
-
-  void _changeMapType() {
-    setState(() {
-      _defaultMapType = _defaultMapType == MapType.normal
-          ? MapType.satellite
-          : MapType.normal;
-    });
-  }
+ 
 
   void _onMapCreated(GoogleMapController _cntlr) {
     _controller = _cntlr;
@@ -69,20 +61,8 @@ class _MyHomePageState extends State<MyHomePage> {
               onMapCreated: _onMapCreated,
               myLocationEnabled: true,
             ),
-            Container(
-              margin: EdgeInsets.only(top: 80, right: 10),
-              alignment: Alignment.topRight,
-              child: Column(children: <Widget>[
-                FloatingActionButton(
-                    child: Icon(Icons.layers),
-                    elevation: 5,
-                    backgroundColor: Colors.teal[200],
-                    onPressed: () {
-                      _changeMapType();
-                      print('Changing the Map Type');
-                    }),
-              ]),
-            ),
+        
+            
           ],
         ),
       ),
