@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
-import 'package:geolocator/geolocator.dart';
-
-
 
 void main() {
   runApp(MyApp());
@@ -28,6 +25,16 @@ class _MyHomePageState extends State<MyHomePage> {
   LatLng _initialcameraposition = LatLng(20.5937, 78.9629);
   GoogleMapController _controller;
   Location _location = Location();
+
+  MapType _defaultMapType = MapType.normal;
+
+  void _changeMapType() {
+    setState(() {
+      _defaultMapType = _defaultMapType == MapType.normal
+          ? MapType.satellite
+          : MapType.normal;
+    });
+  }
 
   void _onMapCreated(GoogleMapController _cntlr) {
     _controller = _cntlr;
@@ -55,9 +62,28 @@ class _MyHomePageState extends State<MyHomePage> {
               initialCameraPosition:
                   CameraPosition(target: _initialcameraposition),
               trafficEnabled: true,
-              mapType: MapType.normal,
               onMapCreated: _onMapCreated,
               myLocationEnabled: true,
+              compassEnabled: true,
+              mapToolbarEnabled: true,
+              rotateGesturesEnabled: true,
+              scrollGesturesEnabled: true,
+              zoomGesturesEnabled: true,
+              tiltGesturesEnabled: true,
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 80, right: 10),
+              alignment: Alignment.topRight,
+              child: Column(children: <Widget>[
+                FloatingActionButton(
+                    child: Icon(Icons.layers),
+                    elevation: 5,
+                    backgroundColor: Colors.teal[200],
+                    onPressed: () {
+                      _changeMapType();
+                      print('Changing the Map Type');
+                    }),
+              ]),
             ),
           ],
         ),
